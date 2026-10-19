@@ -1,0 +1,12 @@
+{
+    "Name": "Shubham",
+    "Course": "B.Tech. CSE",
+    "Domain": "AIDS",
+    "topics": {
+        "Python": "Current",
+        "Pytorch": "Complete",
+        "SQL": "Complete",
+        "Normalization": "Complete",
+        "OSI Reference model - Physical Layer": "Complete"
+    }
+}
