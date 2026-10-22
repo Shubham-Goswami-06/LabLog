@@ -3,10 +3,12 @@
     "Course": "B.Tech. CSE",
     "Domain": "AIDS",
     "topics": {
-        "Python": "Current",
+        "Python": "Currently Studying",
         "Pytorch": "Complete",
         "SQL": "Complete",
         "Normalization": "Complete",
-        "OSI Reference model - Physical Layer": "Complete"
+        "OSI Reference model - Physical Layer": "Complete",
+        "OOPs": "Complete",
+        "GitHub": "Not Started"
     }
 }
