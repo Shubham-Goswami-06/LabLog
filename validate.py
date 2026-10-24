@@ -1,4 +1,5 @@
 import time
+import ui
 
 def valid_status_selection(size: int) -> int:
     while True:
@@ -11,4 +12,13 @@ def valid_status_selection(size: int) -> int:
         except ValueError:
             print('Invalid option please try again')
             time.sleep(1)
+        ui.clear_last_lines(2)
     return s
+
+def valid_topic_name():
+    while True:
+        topic_name = input("Enter the topic name or 0 to go to homepage: ")
+        topic_name.strip()
+        if topic_name == None:
+            print("Topic name can't be empty. Please! try again")
+        else: return topic_name

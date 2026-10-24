@@ -28,15 +28,15 @@ while True:
     if choice == '1':
         clear_screen()
         print(f"{'='*50}\n{' '*15}Add a topic\n{'='*50}\n\n")
-        topic_name = input("Enter the topic name or 0 to go to homepage: ")
+        topic_name = validate.valid_topic_name()
         if topic_name=='0': continue
         for i, s in enumerate(status_options, start=1):
             print(f'{i}. {s}')
         
         s = validate.valid_status_selection(len(status_options))
         if s==0: continue
-        topic.add(topic_name, status_options[s-1], log)
-        print(f'Added topic {topic_name}')
+        done = topic.add(topic_name, status_options[s-1], log)
+        print(done)
         input("Press Enter to continue...")
 
     elif choice == '2':
@@ -60,7 +60,8 @@ while True:
     elif choice == '4':
         clear_screen()
         print(f"{'='*50}\n{' '*20}Topics List\n{'='*50}\n\n")
-        topic.show(log)
+        for i, (topic, status) in enumerate(log['topics'].items(), start=1):
+            print(f'{i}. {topic}: {status}', end='\n')
         input("Press Enter to continue...")
 
     elif choice == '5':
@@ -73,8 +74,9 @@ while True:
             print(f'{i}. {s}')
         s = validate.valid_status_selection(len(status_options))
         if s==0: continue
-        topic.change_status(topic_name, status_options[s-1], log)
-        print(f'Topic {topic_name} status changed to {status_options[s-1]}')
+        done = topic.change_status(topic_name, status_options[s-1], log)
+        print(done)
+        input("Press Enter to continue...")
 
 
     elif choice == '6':
@@ -86,13 +88,15 @@ while True:
         if s==0: continue
         filtered = topic.filter_by_status(status_options[s-1], log)
         print(f'\n\nTopics with status {status_options[s-1]}\n')
-        for i, t in enumerate(filtered, start=1):
-            print(f'{i}. {t}')
+        if len(filtered) is not 0:
+            for i, t in enumerate(filtered, start=1):
+                print(f'{i}. {t}')
+        else: print(f'No topic exists with status {status_options[s-1]}')
         input("Press Enter to continue...")
 
     elif choice == '0':
         print("Exiting...")
-        time.sleep(1.5)
+        time.sleep(1)
         break
 
     else:

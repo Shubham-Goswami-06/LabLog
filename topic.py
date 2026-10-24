@@ -1,8 +1,12 @@
 import data
 
 def add(topic_name: str, s: str, log: dict):
-    log['topics'][topic_name] = s
-    data.save(log)
+    if topic_name in log['topics']:
+        return f'Operation failed! Topic {topic_name} already exist.'
+    else:
+        log['topics'][topic_name] = s
+        data.save(log)
+        return f'Topic {topic_name} added successfully.'
 
 def delete(topic_name, log: dict):
     if topic_name in log['topics']:
@@ -20,15 +24,13 @@ def search(topic_name, log: dict):
     else:
         return f'Topic "{topic_name}" not found.'
 
-def show(log: dict):
-    # List all the topics
-    for i, (topic, status) in enumerate(log['topics'].items(), start=1):
-        print(f'{i}. {topic}: {status}', end='\n')
 
 def change_status(topic_name: str, new_status: str, log: dict):
     if topic_name in log['topics']:
         log['topics'][topic_name] = new_status
-    data.save(log)
+        data.save(log)
+        return f'Topic {topic_name} status changed to {new_status}'
+    else: return f'Topic {topic_name} not fount.'
 
 def filter_by_status(status: str, log: dict):
     filtered_topics = [topic for topic, stat in log['topics'].items() if stat == status]
