@@ -1,37 +1,19 @@
-import data
+from status import Status
+from dataclasses import dataclass, field
+from datetime import date
 
-def add(topic_name: str, s: str, log: dict):
-    if topic_name in log['topics']:
-        return f'Operation failed! Topic {topic_name} already exist.'
-    else:
-        log['topics'][topic_name] = s
-        data.save(log)
-        return f'Topic {topic_name} added successfully.'
+@dataclass
+class Topic:
+    status: Status
+    created: date | None = None
+    modified: date | None = None
+    tags: list = field(default_factory = list)
+    note: str = ""
 
-def delete(topic_name, log: dict):
-    if topic_name in log['topics']:
-        del log['topics'][topic_name]
-        data.save(log)
-        return f'Topic {topic_name} deleted.'
-    else:
-        return f'Topic {topic_name} doesn\'t exist.'
-
-
-def search(topic_name, log: dict):
-    for topic, status in log['topics'].items():
-        if(topic == topic_name):
-            return f'{topic}: {status}'
-    else:
-        return f'Topic "{topic_name}" not found.'
-
-
-def change_status(topic_name: str, new_status: str, log: dict):
-    if topic_name in log['topics']:
-        log['topics'][topic_name] = new_status
-        data.save(log)
-        return f'Topic {topic_name} status changed to {new_status}'
-    else: return f'Topic {topic_name} not fount.'
-
-def filter_by_status(status: str, log: dict):
-    filtered_topics = [topic for topic, stat in log['topics'].items() if stat == status]
-    return filtered_topics
+    def __post_init__(self):
+        if self.created is None:
+            self.created = date.today()
+        if self.modified is None:
+            self.modified = self.created
+        else:
+            self.modified = date.today()

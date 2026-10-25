@@ -1,19 +1,6 @@
-import time
+from status import Status
+lazy import time
 import ui
-
-def valid_status_selection(size: int) -> int:
-    while True:
-        try:
-            s = int(input('Select a status or 0 to go to homepage: '))
-            if 0<=s<=size: break
-            else:
-                print('Invalid option please try again')
-                time.sleep(1)
-        except ValueError:
-            print('Invalid option please try again')
-            time.sleep(1)
-        ui.clear_last_lines(2)
-    return s
 
 def valid_topic_name():
     while True:
@@ -22,3 +9,13 @@ def valid_topic_name():
         if topic_name == None:
             print("Topic name can't be empty. Please! try again")
         else: return topic_name
+
+def valid_status(status_list: list[str]) -> Status:
+    while True:
+        s = int(input("Select a Status: "))
+        if s in range(1,4):
+            return Status(status_list[s-1])
+        else:
+            print("Invalid Option. Please try again")
+            time.sleep(1.5)
+            ui.clear_last_lines(2)

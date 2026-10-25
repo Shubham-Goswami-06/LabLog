@@ -1,7 +1,6 @@
 {
-    "Name": "Shubham",
-    "Course": "B.Tech. CSE",
-    "Domain": "AIDS",
+    "__version__": "v0.3",
+    "name": "Shubham",
     "topics": {
         "Python": "Currently Studying",
         "Pytorch": "Complete",
