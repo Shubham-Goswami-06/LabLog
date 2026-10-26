@@ -5,15 +5,13 @@ from datetime import date
 @dataclass
 class Topic:
     status: Status
-    created: date | None = None
-    modified: date | None = None
+    created: str | None = None
+    modified: str | None = None
     tags: list = field(default_factory = list)
     note: str = ""
 
     def __post_init__(self):
         if self.created is None:
-            self.created = date.today()
+            self.created = str(date.today())
         if self.modified is None:
             self.modified = self.created
-        else:
-            self.modified = date.today()

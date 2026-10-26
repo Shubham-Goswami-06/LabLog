@@ -1,14 +1,1 @@
-{
-    "__version__": "v0.3",
-    "name": "Shubham",
-    "topics": {
-        "Python": "Currently Studying",
-        "Pytorch": "Complete",
-        "SQL": "Complete",
-        "Normalization": "Complete",
-        "OSI Reference model - Physical Layer": "Complete",
-        "OOPs": "Complete",
-        "GitHub": "Not Started",
-        "CN": "Complete"
-    }
-}
+{"__version__": "v0.3", "name": "Shubham", "topics": {"OSI Model": {"status": "Complete", "created": "2026-10-26", "modified": "2026-10-26", "tags": [], "note": ""}, "IPv4": {"status": "Currently Studying", "created": "2026-10-26", "modified": "2026-10-26", "tags": ["CN", "IP"], "note": "Thought by Upendra Sir"}}}

@@ -2,8 +2,8 @@ from enum import Enum
 
 class Status(Enum):
     complete = "Complete"
+    currently_studying = 'Currently Studying'
     not_statrted = "Not Started"
-    incomplete = "Incomplete"
 
     @classmethod
     def all_values(cls) -> list[str]:
