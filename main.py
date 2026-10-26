@@ -90,6 +90,7 @@ while True:
             input('press enter to continue...')
 
     elif reply is 2:
+        ui.clear_screen()
         print(f'{'='*50}\n{f'{options[reply-1]}'.center(50)}\n{'='*50}')
         topic_name = validate.valid_topic_name()
         if topic_name == '0': continue
@@ -110,6 +111,8 @@ while True:
             data.save(manager.to_dict(json_data))
 
     elif reply is 3:
+        ui.clear_screen()
+        print(f'{'='*50}\n{f'{options[reply-1]}'.center(50)}\n{'='*50}')
         print(f'Total number of topics = {len(manager.topics)}')
         for i, t in enumerate(manager.topics, start=1):
             print(f'{i}. {t}')
