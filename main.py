@@ -105,9 +105,10 @@ while True:
 
         if confirm is 0: continue
         else:
-            del manager.topics[topic_name]
-            data.save(manager.to_dict(json_data))
-            print(f'Deleted topic {topic_name}')
+            if manager.delete_topic(topic_name):
+                data.save(manager.to_dict(json_data))
+                print(f'Deleted topic {topic_name}')
+            else: print(f'Topic {topic_name} not found')
             input('press enter to continue...')
 
     elif reply is 3:
