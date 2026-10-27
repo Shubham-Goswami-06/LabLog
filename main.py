@@ -56,7 +56,7 @@ while True:
     while True:
         try:
             reply = int(input('Choose an option: '))
-            if reply not in range(len(options)):
+            if reply not in range(len(options)+1):
                 raise ValueError
             break
         except ValueError:
