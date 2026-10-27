@@ -5,7 +5,7 @@ import ui
 def valid_topic_name():
     while True:
         topic_name = input("Enter the topic name or 0 to go to homepage: ").strip()
-        if topic_name == None:
+        if topic_name == '':
             print("Topic name can't be empty. Please! try again")
         else: return topic_name
 
