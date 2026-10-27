@@ -70,8 +70,6 @@ while True:
         topic_name = validate.valid_topic_name()
         if topic_name == '0': continue
         status_list = Status.all_values()
-        for i, st in enumerate(status_list, start=1):
-            print(f'{i}. {st}')
         s = validate.valid_status(status_list)
         note = input("Enter a note or press enter to skip: ")
         tags = []
@@ -109,6 +107,8 @@ while True:
         else:
             del manager.topics[topic_name]
             data.save(manager.to_dict(json_data))
+            print(f'Deleted topic {topic_name}')
+            input('press enter to continue...')
 
     elif reply is 3:
         ui.clear_screen()
@@ -117,6 +117,44 @@ while True:
         for i, t in enumerate(manager.topics, start=1):
             print(f'{i}. {t}')
         input('press enter to continue...')
+
+    elif reply is 4:
+        ui.clear_screen()
+        print(f'{'='*50}\n{f'{options[reply-1]}'.center(50)}\n{'='*50}')
+        topic_name = validate.valid_topic_name()
+        if topic_name == '0': continue
+        result = manager.search_topic(topic_name)
+        print(f'{len(result)} topics found.')
+        for i, t in enumerate(result, start=1):
+            print(f'{i}. {t}')
+        input('press enter to continue...')
+
+    elif reply is 5:
+        ui.clear_screen()
+        print(f'{'='*50}\n{f'{options[reply-1]}'.center(50)}\n{'='*50}')
+        status_list = Status.all_values()
+        s = validate.valid_status(status_list)
+        result = manager.filter_by_status(s)
+        print(f'{len(result)} topics with status {s.value}')
+        for i, t in enumerate(result, start=1):
+            print(f'{i}. {t}')
+        input('press enter to continue...')
+
+    elif reply is 6:
+        ui.clear_screen()
+        print(f'{'='*50}\n{f'{options[reply-1]}'.center(50)}\n{'='*50}')
+        topic_name = validate.valid_topic_name()
+        if topic_name == '0': continue
+        status_list = Status.all_values()
+        s = validate.valid_status(status_list)
+        if manager.change_status(topic_name, s):
+            json_data = manager.to_dict(json_data)
+            data.save(json_data)
+            print(f'Change status of {topic_name} to {s.value}')
+            input('press enter to continue...')
+        else:
+            print(f'Topic {topic_name} doesn\'t exist')
+            input('press enter to continue...')
 
     elif reply is 0:
         print('Thank you for using LabLog.')
