@@ -11,6 +11,8 @@ def valid_topic_name():
         else: return topic_name
 
 def valid_status(status_list: list[str]) -> Status:
+    for i, st in enumerate(status_list, start=1):
+        print(f'{i}. {st}')
     while True:
         s = int(input("Select a Status: "))
         if s in range(1,4):
